@@ -1,6 +1,5 @@
 class Solution {
-    public String solution(int num) {
-        
+    public static String solution(int num) {
         String answer = "";
         
         if (num % 2 == 0) { // 짝수일 경우
@@ -11,5 +10,10 @@ class Solution {
         
         System.out.print(answer);
         return answer;
+    }
+    
+    public static void main(String[] args) {
+        Solution sol = new Solution();
+        System.out.println(solution(5));
     }
 }
