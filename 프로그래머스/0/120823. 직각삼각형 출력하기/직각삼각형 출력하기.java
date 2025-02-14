@@ -5,11 +5,11 @@ public class Solution {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         
+        StringBuilder answer = new StringBuilder();
+        
         for (int i = 0; i < n; i++) {
-            for (int j = n - i; j <= n; j++) {
-                System.out.print("*");
-            }
-            System.out.println();
+            answer.append("*");
+            System.out.println(answer);
         }
     }
 }
