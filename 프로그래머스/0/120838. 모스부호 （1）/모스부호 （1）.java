@@ -5,9 +5,7 @@ class Solution {
         
         String morse[];
         morse = letter.split(" ");
-        
-        StringBuilder sb = new StringBuilder();
-        
+                
         for (String s : morse) {
             for (int i = 0; i < morseList.length; i++) {
                 if (s.equals(morseList[i])) {
