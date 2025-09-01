@@ -13,9 +13,6 @@ class Solution {
                 height = temp;
             }
             
-            sizes[i][0] = width;
-            sizes[i][1] = height;
-            
             maxWidth = Math.max(maxWidth, width);
             maxHeight = Math.max(maxHeight, height);
         }
