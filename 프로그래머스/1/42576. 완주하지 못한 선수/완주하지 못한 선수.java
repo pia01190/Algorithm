@@ -2,14 +2,31 @@ import java.util.*;
 
 class Solution {
     public String solution(String[] participant, String[] completion) {
-        Arrays.sort(participant);
-        Arrays.sort(completion);
+        String answer = "";
+        Map<String, Integer> map = new HashMap<>();
         
         for (int i = 0; i < completion.length; i++) {
-            if (!participant[i].equals(completion[i])) {
-                return participant[i];
+            String name = completion[i];
+            
+            if (map.containsKey(name)) {
+                map.put(name, map.get(name) + 1);
+            } else {
+                map.put(name, 1);
             }
         }
-        return participant[participant.length - 1];
+        
+        for (int i = 0; i < participant.length; i++) {
+            String name = participant[i];
+            
+            if (!map.containsKey(name)) {
+                answer = name;
+            } else if (map.containsKey(name) && map.get(name) == 1) {
+                map.remove(name);
+            } else if (map.containsKey(name) && map.get(name) > 1) {
+                map.put(name, map.get(name) - 1);
+            }
+        }
+        
+        return answer;
     }
 }
