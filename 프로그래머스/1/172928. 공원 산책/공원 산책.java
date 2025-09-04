@@ -1,78 +1,55 @@
+import java.util.*;
+
 class Solution {
     public int[] solution(String[] park, String[] routes) {
-        int w = park[0].length();
         int h = park.length;
-        int[] start = new int[2];
+        int w = park[0].length();
+        int[] answer = new int[2];
         
         for (int i = 0; i < h; i++) {
             for (int j = 0; j < w; j++) {
                 if (park[i].charAt(j) == 'S') {
-                    start[0] = i;
-                    start[1] = j;
+                    answer[0] = i;
+                    answer[1] = j;
                 }
             }
         }
+        
+        Map<Character, int[]> map = new HashMap<>();
+        map.put('N', new int[]{-1, 0});
+        map.put('S', new int[]{1, 0});
+        map.put('W', new int[]{0, -1});
+        map.put('E', new int[]{0, 1});
         
         for (int i = 0; i < routes.length; i++) {
-            int direction = routes[i].charAt(0);
+            char direction = routes[i].charAt(0);
             int num = routes[i].charAt(2) - '0';
+            int[] move = map.get(direction);
             
-            if(direction == 'N') {
-                if (start[0] - num < 0) {
-                    continue;
+            int nextH = answer[0];
+            int nextW = answer[1];
+            boolean ok = true;
+            
+            for (int j = 0; j < num; j++) {
+                nextH += move[0];
+                nextW += move[1];
+                
+                if (!canMove(nextH, nextW, park, h, w)) {
+                    ok = false;
+                    break;
                 }
-                
-                start[0] -= num;
-                
-                for (int j = start[0]; j < start[0] + num; j++) {
-                    if (park[j].charAt(start[1]) == 'X') {
-                        start[0] += num;
-                        break;
-                    }
-                }
-            } else if (direction == 'S') {
-                if (start[0] + num >= h) {
-                    continue;
-                }
-                
-                start[0] += num;
-                
-                for (int j = start[0] - num + 1; j <= start[0]; j++) {
-                    if (park[j].charAt(start[1]) == 'X') {
-                        start[0] -= num;
-                        break;
-                    }
-                }
-                
-            } else if (direction == 'W') {
-                if (start[1] - num < 0) {
-                    continue;
-                }
-                
-                start[1] -= num;
-                
-                for (int j = start[1]; j < start[1] + num; j++) {
-                    if (park[start[0]].charAt(j) == 'X') {
-                        start[1] += num;
-                        break;
-                    }
-                }
-            } else {
-                if (start[1] + num >= w) {
-                    continue;
-                }
-                
-                start[1] += num;
-                
-                for (int j = start[1] - num + 1; j <= start[1]; j++) {
-                    if (park[start[0]].charAt(j) == 'X') {
-                        start[1] -= num;
-                        break;
-                    }
-                }
+            }
+            
+            if (ok) {
+                answer[0] = nextH;
+                answer[1] = nextW;
             }
         }
         
-        return start;
+        return answer;
+    }
+    
+    private static boolean canMove(int nextH, int nextW, String[] park, int h, int w) {
+        return (nextH >= 0 && nextH < h && nextW >= 0 && nextW < w && park[nextH].charAt(nextW) != 'X');
     }
 }
