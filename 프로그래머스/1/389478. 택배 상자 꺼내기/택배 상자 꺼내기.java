@@ -6,9 +6,10 @@ class Solution {
         int row = 0;
         int col = 0;
         
+        // box 배열에 boxNum 넣기
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < w; j++) {
-                if(boxNum > n) {
+                if (boxNum > n) {
                     break;
                 }
                 
@@ -20,6 +21,7 @@ class Solution {
             }
         }
         
+        // num 상자가 위치한 좌표 구하기
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < w; j++) {
                 if (box[i][j] == num) {
@@ -30,6 +32,7 @@ class Solution {
             }
         }
         
+        // 꺼내야 하는 상자의 총 개수 구하기
         int count = 0;
         for(int i = row; i < height; i++) {
             if(box[i][col] != 0) {
