@@ -20,7 +20,7 @@ class Main {
             return;
         }
 
-        for (int i = depth == 0 ? 2 : 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++) {
             int next = num * 10 + i;
 
             if (isPrime(next)) {
@@ -30,6 +30,10 @@ class Main {
     }
 
     private static boolean isPrime(int next) {
+        if (next == 0 || next == 1) {
+            return false;
+        }
+
         for (int i = 2; i <= (int) Math.sqrt(next); i++) {
             if (next % i == 0) {
                 return false;
