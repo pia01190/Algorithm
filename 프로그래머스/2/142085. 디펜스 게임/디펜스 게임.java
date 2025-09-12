@@ -6,21 +6,19 @@ class Solution {
         PriorityQueue<Integer> pq = new PriorityQueue<>(Comparator.reverseOrder());
         
         for (int i = 0; i < enemy.length; i++) {
-            if (n - enemy[i] < 0) {
+            pq.add(enemy[i]);
+            n -= enemy[i];
+            
+            if (n < 0) {
                 if (k > 0) {
-                    n -= enemy[i];
-                    k--;
-                    pq.add(enemy[i]);
                     n += pq.poll();
-                    count++;
+                    k--;
                 } else {
                     break;
                 }
-            } else {
-                pq.add(enemy[i]);
-                n -= enemy[i];
-                count++;
             }
+            
+            count++;
         }
         
         return count;
