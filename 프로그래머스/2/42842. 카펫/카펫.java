@@ -8,15 +8,15 @@ class Solution {
             row = i;
             col = carpet / row;
             
-            if (row < 3) {
+            if (row > col) {
                 continue;
             }
             
-            if ((row - 2) * (col - 2) == yellow && row >= col && row * col == carpet) {
+            if ((row - 2) * (col - 2) == yellow && row * col == carpet) {
                 break;
             }
         }
         
-        return new int[] {row, col};
+        return new int[] {col, row};
     }
 }
