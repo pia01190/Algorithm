@@ -14,9 +14,7 @@ class Solution {
             }
             
             if (sb.substring(sb.length() - 4).equals(hamburger)) {
-                for (int j = 0; j < hamburger.length(); j++) {
-                    sb.deleteCharAt(sb.length() - 1);
-                }
+                sb.delete(sb.length() - 4, sb.length());
                 count++;
             }
         }
