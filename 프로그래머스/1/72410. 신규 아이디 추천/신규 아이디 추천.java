@@ -6,15 +6,10 @@ class Solution {
         for (int i = 0; i < sb.length(); i++) {
             char alphabet = sb.charAt(i);
             
-            if (!((alphabet >= 'a' && alphabet <= 'z') ||
-                (alphabet >= '0' && alphabet <= '9') ||
-                alphabet == '-' || alphabet == '_' || alphabet == '.')) {
+            if (!((alphabet >= 'a' && alphabet <= 'z') || (alphabet >= '0' && alphabet <= '9') ||
+                  alphabet == '-' || alphabet == '_' || alphabet == '.')) {
                 sb.deleteCharAt(i--);
             }
-        }
-        
-        if (sb.length() == 0) {
-            sb.append('a');
         }
         
         for (int i = 1; i < sb.length(); i++) {
